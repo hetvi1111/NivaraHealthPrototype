@@ -10,30 +10,29 @@ st.markdown("""
 background: linear-gradient(135deg,#2F80ED,#27AE60);
 }
 
+/* remove header */
 [data-testid="stHeader"]{
 display:none;
 }
 
-.main{
-padding-top:0rem;
-}
-
-.container{
-display:flex;
+/* make page full height */
+.block-container{
+padding-top:0;
 height:100vh;
+display:flex;
 align-items:center;
 }
 
 /* LEFT SIDE */
 
 .left{
-flex:1;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:flex-start;
 color:white;
 padding-left:120px;
+height:100vh;
 }
 
 .left h1{
@@ -50,10 +49,10 @@ opacity:0.9;
 /* RIGHT SIDE */
 
 .right{
-flex:1;
 display:flex;
 justify-content:center;
 align-items:center;
+height:100vh;
 }
 
 /* LOGIN CARD */
@@ -88,29 +87,35 @@ color:white;
 font-weight:bold;
 }
 
-/* BUTTON */
+/* BUTTON FIX */
 
-button[kind="primary"]{
+div[data-testid="stButton"] button{
+width:100%;
 background:linear-gradient(to right,#2F80ED,#27AE60);
 color:white;
-border:none;
 font-weight:600;
+border:none;
+border-radius:8px;
+padding:10px;
 }
 
 /* FORGOT PASSWORD */
 
 .forgot a{
-color:#666 !important;
+color:white !important;
 text-decoration:none;
 font-size:14px;
+}
+
+.forgot{
+text-align:right;
+margin-top:6px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-
 left,right = st.columns([1.2,1])
-
 
 # LEFT PANEL
 with left:
@@ -126,11 +131,10 @@ with left:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-
-
-# RIGHT PANEL (LOGIN CARD)
-
+# RIGHT PANEL
 with right:
+
+    st.markdown('<div class="right">', unsafe_allow_html=True)
 
     st.markdown('<div class="login-card">', unsafe_allow_html=True)
 
@@ -157,7 +161,7 @@ with right:
 
     remember = st.checkbox("Remember me")
 
-    if st.button("Sign In Securely", type="primary"):
+    if st.button("Sign In Securely"):
 
         errors = []
 
@@ -182,11 +186,8 @@ with right:
         else:
             st.success("Login successful")
 
-    st.markdown('<div class="forgot"><a href="#">Forgot password?</a></div>', unsafe_allow_html=True)
-
-    st.markdown("---")
-
-    st.markdown("New to NivaraHealth?")
-    st.markdown("Don't have an account? **Request Access**")
+    st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
+
+st.markdown('<div class="forgot"><a href="#">Forgot password?</a></div>', unsafe_allow_html=True)
