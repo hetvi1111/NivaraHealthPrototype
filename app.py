@@ -18,10 +18,10 @@ display:none;
 
 .login-card{
 background:white;
-padding:40px;
+padding:45px;
 border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-width:420px;
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
+width:550px;
 margin:auto;
 }
 
@@ -52,7 +52,7 @@ text-decoration:none;
 </style>
 """, unsafe_allow_html=True)
 
-left,right = st.columns([1.3,1])
+left,right = st.columns([1,1.5])
 
 # LEFT SIDE
 with left:
