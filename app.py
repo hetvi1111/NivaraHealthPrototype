@@ -6,24 +6,52 @@ st.set_page_config(page_title="NivaraHealth", layout="wide")
 st.markdown("""
 <style>
 
-[data-testid="stAppViewContainer"]{
-background: linear-gradient(135deg,#2F80ED,#27AE60);
-}
-
+/* Remove top Streamlit header */
 [data-testid="stHeader"]{
 display:none;
 }
 
-/* LOGIN CARD */
+/* Full page background */
+[data-testid="stAppViewContainer"]{
+background: linear-gradient(135deg,#2F80ED,#27AE60);
+}
+
+/* LEFT SIDE */
+
+.left-panel{
+color:white;
+padding-left:120px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+height:100vh;
+}
+
+.left-panel h1{
+font-size:46px;
+font-weight:700;
+margin-top:20px;
+}
+
+.left-panel p{
+font-size:22px;
+opacity:0.9;
+}
+
+/* RIGHT SIDE */
+
+.right-panel{
+background:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* LOGIN CONTENT */
 
 .login-card{
-background:white;
-padding:45px;
-border-radius:15px;
-box-shadow:0 15px 35px rgba(0,0,0,0.25);
-width:90%;
-max-width:700px;
-margin:auto;
+width:420px;
 }
 
 /* BUTTON STYLE */
@@ -42,44 +70,59 @@ padding:10px;
 
 .forgot{
 text-align:right;
-font-size:14px;
+margin-top:5px;
 }
 
 .forgot a{
-color:white;
+color:#2F80ED;
 text-decoration:none;
+font-size:14px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-left,right = st.columns([1,2])
 
-# LEFT SIDE
+# Create layout
+left, right = st.columns([1.2,1])
+
+
+# LEFT PANEL
 with left:
 
-    st.image("https://cdn-icons-png.flaticon.com/512/3774/3774299.png", width=120)
+    st.markdown('<div class="left-panel">', unsafe_allow_html=True)
 
-    st.markdown(
-        "<h1 style='color:white;'>Welcome to NivaraHealth</h1>",
-        unsafe_allow_html=True
+    st.image(
+        "https://cdn-icons-png.flaticon.com/512/3774/3774299.png",
+        width=120
     )
 
-    st.markdown(
-        "<p style='color:white;font-size:22px;'>Smart Healthcare, Simplified Management</p>",
-        unsafe_allow_html=True
-    )
+    st.markdown("""
+    <h1>Welcome to NivaraHealth</h1>
+    <p>Smart Healthcare, Simplified Management</p>
+    """, unsafe_allow_html=True)
 
-# RIGHT SIDE
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+
+# RIGHT PANEL
 with right:
 
-    st.markdown("<div class='login-card'>", unsafe_allow_html=True)
+    st.markdown('<div class="right-panel">', unsafe_allow_html=True)
+
+    st.markdown('<div class="login-card">', unsafe_allow_html=True)
 
     st.markdown("### Secure Login")
     st.caption("Access your healthcare dashboard")
 
     email = st.text_input("Email Address", placeholder="doctor@nivarahealth.com")
-    password = st.text_input("Password", type="password")
+
+    password = st.text_input(
+        "Password",
+        type="password",
+        placeholder="Enter your password"
+    )
 
     role = st.selectbox(
         "Select Role",
@@ -87,6 +130,9 @@ with right:
     )
 
     remember = st.checkbox("Remember me")
+
+    st.markdown('<div class="forgot"><a href="#">Forgot password?</a></div>',
+                unsafe_allow_html=True)
 
     if st.button("Sign In Securely"):
 
@@ -113,9 +159,9 @@ with right:
         else:
             st.success("Login successful")
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("---")
+    st.markdown("New to NivaraHealth?")
+    st.markdown("Don't have an account? **Request Access**")
 
-st.markdown(
-    "<div class='forgot'><a href='#'>Forgot password?</a></div>",
-    unsafe_allow_html=True
-)
+    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
