@@ -21,7 +21,8 @@ background:white;
 padding:45px;
 border-radius:15px;
 box-shadow:0 15px 35px rgba(0,0,0,0.25);
-width:550px;
+width:90%;
+max-width:700px;
 margin:auto;
 }
 
@@ -52,7 +53,7 @@ text-decoration:none;
 </style>
 """, unsafe_allow_html=True)
 
-left,right = st.columns([1,1.5])
+left,right = st.columns([1,2])
 
 # LEFT SIDE
 with left:
