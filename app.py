@@ -6,57 +6,55 @@ st.set_page_config(page_title="NivaraHealth", layout="wide")
 st.markdown("""
 <style>
 
-/* Remove Streamlit header */
+/* remove header */
 [data-testid="stHeader"]{
 display:none;
 }
 
-/* Left background gradient */
-section[data-testid="stSidebar"]{
-display:none;
+/* remove default padding */
+.block-container{
+padding:0rem;
 }
 
-/* LEFT PANEL */
+/* LEFT PANEL BACKGROUND */
+div[data-testid="column"]:first-child{
+background: linear-gradient(135deg,#2F80ED,#27AE60);
+height:100vh;
+display:flex;
+align-items:center;
+}
 
-.left-panel{
+/* RIGHT PANEL BACKGROUND */
+div[data-testid="column"]:last-child{
+background:white;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* LEFT TEXT AREA */
+.left-content{
 color:white;
 padding-left:120px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-height:100vh;
 }
 
-.left-panel h1{
+.left-content h1{
 font-size:46px;
-font-weight:700;
 margin-top:20px;
 }
 
-.left-panel p{
+.left-content p{
 font-size:22px;
 opacity:0.9;
 }
 
-/* RIGHT COLUMN BACKGROUND */
-
-div[data-testid="column"]:nth-of-type(2){
-background:white;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-/* LOGIN FORM WIDTH */
-
+/* LOGIN AREA */
 .login-area{
 width:420px;
-margin:auto;
 }
 
 /* BUTTON */
-
 div[data-testid="stButton"] button{
 width:100%;
 background:linear-gradient(to right,#2F80ED,#27AE60);
@@ -68,10 +66,9 @@ padding:10px;
 }
 
 /* FORGOT PASSWORD */
-
 .forgot{
 text-align:right;
-margin-top:-10px;
+margin-top:-8px;
 margin-bottom:15px;
 }
 
@@ -84,14 +81,13 @@ font-size:14px;
 </style>
 """, unsafe_allow_html=True)
 
-
 left, right = st.columns([1.2,1])
 
 
-# LEFT SIDE
+# LEFT PANEL
 with left:
 
-    st.markdown('<div class="left-panel">', unsafe_allow_html=True)
+    st.markdown('<div class="left-content">', unsafe_allow_html=True)
 
     st.image(
         "https://cdn-icons-png.flaticon.com/512/3774/3774299.png",
@@ -106,8 +102,7 @@ with left:
     st.markdown("</div>", unsafe_allow_html=True)
 
 
-
-# RIGHT SIDE
+# RIGHT PANEL
 with right:
 
     st.markdown('<div class="login-area">', unsafe_allow_html=True)
