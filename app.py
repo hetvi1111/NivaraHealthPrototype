@@ -23,7 +23,7 @@ height:100vh;
 
 /* LEFT PANEL */
 div[data-testid="column"]:first-child{
-background: linear-gradient(135deg,#2F80ED,#27AE60);
+background: blue;
 display:flex;
 align-items:center;
 justify-content:center;
