@@ -6,17 +6,17 @@ st.set_page_config(page_title="NivaraHealth", layout="wide")
 st.markdown("""
 <style>
 
-/* Remove top Streamlit header */
+/* Remove Streamlit header */
 [data-testid="stHeader"]{
 display:none;
 }
 
-/* Full page background */
-[data-testid="stAppViewContainer"]{
-background: linear-gradient(135deg,#2F80ED,#27AE60);
+/* Left background gradient */
+section[data-testid="stSidebar"]{
+display:none;
 }
 
-/* LEFT SIDE */
+/* LEFT PANEL */
 
 .left-panel{
 color:white;
@@ -38,9 +38,9 @@ font-size:22px;
 opacity:0.9;
 }
 
-/* RIGHT SIDE */
+/* RIGHT COLUMN BACKGROUND */
 
-.right-panel{
+div[data-testid="column"]:nth-of-type(2){
 background:white;
 height:100vh;
 display:flex;
@@ -48,13 +48,14 @@ justify-content:center;
 align-items:center;
 }
 
-/* LOGIN CONTENT */
+/* LOGIN FORM WIDTH */
 
-.login-card{
+.login-area{
 width:420px;
+margin:auto;
 }
 
-/* BUTTON STYLE */
+/* BUTTON */
 
 div[data-testid="stButton"] button{
 width:100%;
@@ -70,7 +71,8 @@ padding:10px;
 
 .forgot{
 text-align:right;
-margin-top:5px;
+margin-top:-10px;
+margin-bottom:15px;
 }
 
 .forgot a{
@@ -83,11 +85,10 @@ font-size:14px;
 """, unsafe_allow_html=True)
 
 
-# Create layout
 left, right = st.columns([1.2,1])
 
 
-# LEFT PANEL
+# LEFT SIDE
 with left:
 
     st.markdown('<div class="left-panel">', unsafe_allow_html=True)
@@ -106,17 +107,18 @@ with left:
 
 
 
-# RIGHT PANEL
+# RIGHT SIDE
 with right:
 
-    st.markdown('<div class="right-panel">', unsafe_allow_html=True)
-
-    st.markdown('<div class="login-card">', unsafe_allow_html=True)
+    st.markdown('<div class="login-area">', unsafe_allow_html=True)
 
     st.markdown("### Secure Login")
     st.caption("Access your healthcare dashboard")
 
-    email = st.text_input("Email Address", placeholder="doctor@nivarahealth.com")
+    email = st.text_input(
+        "Email Address",
+        placeholder="doctor@nivarahealth.com"
+    )
 
     password = st.text_input(
         "Password",
@@ -131,8 +133,10 @@ with right:
 
     remember = st.checkbox("Remember me")
 
-    st.markdown('<div class="forgot"><a href="#">Forgot password?</a></div>',
-                unsafe_allow_html=True)
+    st.markdown(
+        '<div class="forgot"><a href="#">Forgot password?</a></div>',
+        unsafe_allow_html=True
+    )
 
     if st.button("Sign In Securely"):
 
@@ -163,5 +167,4 @@ with right:
     st.markdown("New to NivaraHealth?")
     st.markdown("Don't have an account? **Request Access**")
 
-    st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
