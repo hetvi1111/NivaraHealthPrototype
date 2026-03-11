@@ -20,6 +20,7 @@ display:none;
 }
 
 /* Main layout */
+
 .main-container{
 display:flex;
 height:100vh;
@@ -29,7 +30,7 @@ width:100%;
 /* LEFT PANEL */
 
 .left-panel{
-flex:1.4;
+flex:0.9;
 background:linear-gradient(135deg,#2F80ED,#27AE60);
 display:flex;
 flex-direction:column;
@@ -37,6 +38,8 @@ justify-content:center;
 align-items:center;
 color:white;
 text-align:center;
+position:relative;
+overflow:hidden;
 }
 
 .left-panel h1{
@@ -53,7 +56,7 @@ opacity:0.9;
 /* RIGHT PANEL */
 
 .right-panel{
-flex:1;
+flex:1.6;
 background:#F4F5F7;
 display:flex;
 justify-content:center;
@@ -154,6 +157,8 @@ text-decoration:none;
 text-decoration:underline;
 }
 
+/* Bottom section */
+
 .bottom{
 text-align:center;
 margin-top:20px;
@@ -167,6 +172,36 @@ font-weight:500;
 cursor:pointer;
 }
 
+/* Background circles */
+
+.circle{
+position:absolute;
+border:1px solid rgba(255,255,255,0.25);
+border-radius:50%;
+opacity:0.5;
+}
+
+.circle1{
+width:320px;
+height:320px;
+top:60px;
+left:80px;
+}
+
+.circle2{
+width:420px;
+height:420px;
+bottom:120px;
+left:220px;
+}
+
+.circle3{
+width:500px;
+height:500px;
+bottom:-120px;
+left:-120px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -175,6 +210,10 @@ st.markdown("""
 <div class="main-container">
 
 <div class="left-panel">
+
+<div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
 
 <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" width="120">
 
