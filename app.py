@@ -16,12 +16,18 @@ display:none;
 padding:0rem;
 }
 
+/* make columns full height */
+section.main > div{
+height:100vh;
+}
+
 /* LEFT PANEL BACKGROUND */
 div[data-testid="column"]:first-child{
 background: linear-gradient(135deg,#2F80ED,#27AE60);
 height:100vh;
 display:flex;
 align-items:center;
+justify-content:center;
 }
 
 /* RIGHT PANEL BACKGROUND */
@@ -36,14 +42,17 @@ justify-content:center;
 /* LEFT TEXT AREA */
 .left-content{
 color:white;
-padding-left:120px;
+max-width:420px;
+margin:auto;
 }
 
+/* heading */
 .left-content h1{
 font-size:46px;
 margin-top:20px;
 }
 
+/* tagline */
 .left-content p{
 font-size:22px;
 opacity:0.9;
