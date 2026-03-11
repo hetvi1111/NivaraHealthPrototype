@@ -11,48 +11,43 @@ st.markdown("""
 display:none;
 }
 
-/* remove default padding */
+/* remove padding */
 .block-container{
-padding:0rem;
+padding:0;
 }
 
 /* make columns full height */
-section.main > div{
+div[data-testid="column"]{
 height:100vh;
 }
 
-/* LEFT PANEL BACKGROUND */
+/* LEFT PANEL */
 div[data-testid="column"]:first-child{
 background: linear-gradient(135deg,#2F80ED,#27AE60);
-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-/* RIGHT PANEL BACKGROUND */
+/* RIGHT PANEL */
 div[data-testid="column"]:last-child{
 background:white;
-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-/* LEFT TEXT AREA */
+/* LEFT CONTENT */
 .left-content{
 color:white;
-max-width:420px;
-margin:auto;
+max-width:450px;
 }
 
-/* heading */
 .left-content h1{
-font-size:46px;
+font-size:44px;
 margin-top:20px;
 }
 
-/* tagline */
 .left-content p{
 font-size:22px;
 opacity:0.9;
