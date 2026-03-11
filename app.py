@@ -1,63 +1,56 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="NivaraHealth", layout="wide")
 
 st.markdown("""
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
 
-html, body, [class*="css"]  {
-font-family: 'Inter', sans-serif;
+[data-testid="stAppViewContainer"]{
+background: linear-gradient(135deg,#2F80ED,#27AE60);
 }
 
 [data-testid="stHeader"]{
 display:none;
 }
 
-[data-testid="stToolbar"]{
-display:none;
+.main{
+padding-top:0rem;
 }
 
-/* Main layout */
-
-.main-container{
+.container{
 display:flex;
 height:100vh;
-width:100%;
+align-items:center;
 }
 
-/* LEFT PANEL */
+/* LEFT SIDE */
 
-.left-panel{
-flex:0.9;
-background:linear-gradient(135deg,#2F80ED,#27AE60);
+.left{
+flex:1;
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
+align-items:flex-start;
 color:white;
-text-align:center;
-position:relative;
-overflow:hidden;
+padding-left:120px;
 }
 
-.left-panel h1{
-font-size:44px;
+.left h1{
+font-size:46px;
 font-weight:700;
 margin-top:20px;
 }
 
-.left-panel p{
-font-size:20px;
+.left p{
+font-size:22px;
 opacity:0.9;
 }
 
-/* RIGHT PANEL */
+/* RIGHT SIDE */
 
-.right-panel{
-flex:1.6;
-background:#F4F5F7;
+.right{
+flex:1;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -67,13 +60,13 @@ align-items:center;
 
 .login-card{
 background:white;
-width:420px;
 padding:40px;
 border-radius:18px;
-box-shadow:0px 20px 45px rgba(0,0,0,0.12);
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+width:420px;
 }
 
-/* Logo */
+/* LOGO */
 
 .logo{
 display:flex;
@@ -84,194 +77,116 @@ margin-bottom:20px;
 }
 
 .logo-box{
-width:42px;
-height:42px;
-border-radius:10px;
+width:40px;
+height:40px;
 background:linear-gradient(135deg,#2F80ED,#27AE60);
+border-radius:10px;
 display:flex;
 align-items:center;
 justify-content:center;
 color:white;
-font-weight:700;
+font-weight:bold;
 }
 
-/* Headings */
+/* BUTTON */
 
-.secure{
-text-align:center;
-margin-top:10px;
-}
-
-.secure h3{
-margin:0;
-font-weight:600;
-}
-
-.secure p{
-font-size:14px;
-color:#6B7280;
-margin-top:4px;
-}
-
-/* Inputs */
-
-input, select{
-width:100%;
-padding:12px;
-border-radius:8px;
-border:1px solid #E5E7EB;
-margin-top:6px;
-margin-bottom:16px;
-font-size:14px;
-}
-
-/* Button */
-
-.login-btn{
-width:100%;
-padding:12px;
+button[kind="primary"]{
 background:linear-gradient(to right,#2F80ED,#27AE60);
-border:none;
 color:white;
+border:none;
 font-weight:600;
-border-radius:8px;
-cursor:pointer;
 }
 
-/* Forgot password */
+/* FORGOT PASSWORD */
 
-.row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-size:14px;
-margin-bottom:16px;
-}
-
-.row a{
-color:#2F80ED;
+.forgot a{
+color:#666 !important;
 text-decoration:none;
-}
-
-.row a:hover{
-text-decoration:underline;
-}
-
-/* Bottom section */
-
-.bottom{
-text-align:center;
-margin-top:20px;
 font-size:14px;
-color:#6B7280;
-}
-
-.bottom span{
-color:#27AE60;
-font-weight:500;
-cursor:pointer;
-}
-
-/* Background circles */
-
-.circle{
-position:absolute;
-border:1px solid rgba(255,255,255,0.25);
-border-radius:50%;
-opacity:0.5;
-}
-
-.circle1{
-width:320px;
-height:320px;
-top:60px;
-left:80px;
-}
-
-.circle2{
-width:420px;
-height:420px;
-bottom:120px;
-left:220px;
-}
-
-.circle3{
-width:500px;
-height:500px;
-bottom:-120px;
-left:-120px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
 
-<div class="main-container">
-
-<div class="left-panel">
-
-<div class="circle circle1"></div>
-<div class="circle circle2"></div>
-<div class="circle circle3"></div>
-
-<img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" width="120">
-
-<h1>Welcome to NivaraHealth</h1>
-
-<p>Smart Healthcare, Simplified Management</p>
-
-</div>
+left,right = st.columns([1.2,1])
 
 
-<div class="right-panel">
+# LEFT PANEL
+with left:
 
-<div class="login-card">
+    st.markdown('<div class="left">', unsafe_allow_html=True)
 
-<div class="logo">
-<div class="logo-box">+</div>
-<div>
-<strong>NivaraHealth</strong><br>
-<span style="font-size:12px;color:#6B7280;">Healthcare Management</span>
-</div>
-</div>
+    st.image("https://cdn-icons-png.flaticon.com/512/3774/3774299.png", width=120)
 
-<div class="secure">
-<h3>Secure Login</h3>
-<p>Access your healthcare dashboard</p>
-</div>
+    st.markdown("""
+    <h1>Welcome to NivaraHealth</h1>
+    <p>Smart Healthcare, Simplified Management</p>
+    """, unsafe_allow_html=True)
 
-<label>Email Address</label>
-<input placeholder="doctor@nivarahealth.com">
+    st.markdown("</div>", unsafe_allow_html=True)
 
-<label>Password</label>
-<input type="password" placeholder="Enter your password">
 
-<label>Select Role</label>
-<select>
-<option>Choose your role</option>
-<option>Administrator</option>
-<option>Doctor</option>
-<option>Staff</option>
-<option>Patient</option>
-</select>
 
-<div class="row">
-<label><input type="checkbox"> Remember me</label>
-<a href="#">Forgot password?</a>
-</div>
+# RIGHT PANEL (LOGIN CARD)
 
-<button class="login-btn">Sign In Securely</button>
+with right:
 
-<div class="bottom">
-<hr>
-<p>New to NivaraHealth?</p>
-<p>Don't have an account? <span>Request Access</span></p>
-</div>
+    st.markdown('<div class="login-card">', unsafe_allow_html=True)
 
-</div>
-</div>
+    st.markdown("""
+    <div class="logo">
+        <div class="logo-box">+</div>
+        <div>
+            <h3 style="margin:0;">NivaraHealth</h3>
+            <p style="font-size:12px;color:gray;margin:0;">Healthcare Management</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-</div>
+    st.markdown("### Secure Login")
+    st.caption("Access your healthcare dashboard")
 
-""", unsafe_allow_html=True)
+    email = st.text_input("Email Address", placeholder="doctor@nivarahealth.com")
+    password = st.text_input("Password", type="password", placeholder="Enter your password")
+
+    role = st.selectbox(
+        "Select Role",
+        ["Choose role","Administrator","Doctor","Staff","Patient"]
+    )
+
+    remember = st.checkbox("Remember me")
+
+    if st.button("Sign In Securely", type="primary"):
+
+        errors = []
+
+        if not email:
+            errors.append("Email required")
+
+        elif not re.match(r"\S+@\S+\.\S+", email):
+            errors.append("Invalid email")
+
+        if not password:
+            errors.append("Password required")
+
+        elif len(password) < 8:
+            errors.append("Password must be at least 8 characters")
+
+        if role == "Choose role":
+            errors.append("Please select role")
+
+        if errors:
+            for e in errors:
+                st.error(e)
+        else:
+            st.success("Login successful")
+
+    st.markdown('<div class="forgot"><a href="#">Forgot password?</a></div>', unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    st.markdown("New to NivaraHealth?")
+    st.markdown("Don't have an account? **Request Access**")
+
+    st.markdown("</div>", unsafe_allow_html=True)
